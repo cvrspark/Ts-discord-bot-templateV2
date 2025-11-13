@@ -4,8 +4,8 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "bun src/index.ts",
-    "deploy": "bun src/services/deploy.ts",
-    "comp": "bun src/services/deploy.ts && bun src/index.ts"
+    "deploy": "bun src/core/services/deploy.ts",
+    "comp": "bun src/core/services/deploy.ts && bun src/index.ts"
   },
   "dependencies": {
     "discord-api-types": "^0.38.18",
