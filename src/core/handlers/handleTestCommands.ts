@@ -4,6 +4,7 @@ import path from 'path';
 import clientsettings from "../../../config.json"
 
 const log = clientsettings.private;
+
 function loadCommandsFromDirectory(client: any, dirPath: string) {
     const items = fs.readdirSync(dirPath);
 
@@ -24,7 +25,7 @@ function loadCommandsFromDirectory(client: any, dirPath: string) {
                     if (cmdName) {
                         client.commands.set(cmdName, command);
                         if (log) {
-                            console.log(`Loaded command: ${cmdName}`);
+                            console.log(`Loaded test command: ${cmdName}`);
                         }
                     }
                 } 
@@ -36,10 +37,10 @@ function loadCommandsFromDirectory(client: any, dirPath: string) {
     }
 }
 
-export default async function handleCommands(client: Client) {
+export default async function handleTestCommands(client: Client) {
     const customClient = client as any;
     
-    const interactionPath = path.join(__dirname, '..', '..', 'app', 'interactions');
+    const interactionPath = path.join(__dirname, '..', '..', 'app', 'test');
     
     if (fs.existsSync(interactionPath)) {
         const interactionFolders = fs.readdirSync(interactionPath);

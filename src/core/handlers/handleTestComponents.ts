@@ -1,12 +1,12 @@
-import { Client } from 'discord.js';
 import fs from 'fs';
 import path from 'path';
-
+import { Client } from 'discord.js';
+import "../../core/types/client"
 import clientsettings from "../../../config.json"
 
 const log = clientsettings.private;
 
-function loadComponentsFromDirectory(client: Client, dirPath: string, componentType: 'buttons' | 'selectMenus' | 'modals') {
+function loadComponentsFromTestDirectory(client: Client, dirPath: string, componentType: 'buttons' | 'selectMenus' | 'modals') {
     if (!fs.existsSync(dirPath)) {
         return;
     }
@@ -18,7 +18,7 @@ function loadComponentsFromDirectory(client: Client, dirPath: string, componentT
         const stat = fs.statSync(itemPath);
 
         if (stat.isDirectory()) {
-            loadComponentsFromDirectory(client, itemPath, componentType);
+            loadComponentsFromTestDirectory(client, itemPath, componentType);
         } else if (item.endsWith('.ts') || item.endsWith('.js')) {
             try {
                 const component = require(itemPath).default;
@@ -32,7 +32,7 @@ function loadComponentsFromDirectory(client: Client, dirPath: string, componentT
                             if (!client.buttonPatterns) client.buttonPatterns = new Map();
                             client.buttonPatterns.set(customId, component);
                             if (log) {
-                                console.log(`Loaded button: ${customId}`);
+                                console.log(`Loaded test button: ${customId}`);
                             }
                             break;
                         case 'selectMenus':
@@ -40,7 +40,7 @@ function loadComponentsFromDirectory(client: Client, dirPath: string, componentT
                             if (!client.selectMenuPatterns) client.selectMenuPatterns = new Map();
                             client.selectMenuPatterns.set(customId, component);
                             if (log) {
-                                console.log(`Loaded selectMenu: ${customId}`);
+                                console.log(`Loaded test selectMenu: ${customId}`);
                             }
                             break;
                         case 'modals':
@@ -48,7 +48,7 @@ function loadComponentsFromDirectory(client: Client, dirPath: string, componentT
                             if (!client.modalPatterns) client.modalPatterns = new Map();
                             client.modalPatterns.set(customId, component);
                             if (log) {
-                                console.log(`Loaded modal: ${customId}`);
+                                console.log(`Loaded test modal: ${customId}`);
                             }
                             break;
                     }
@@ -60,8 +60,8 @@ function loadComponentsFromDirectory(client: Client, dirPath: string, componentT
     }
 }
 
-export default async function handleComponents(client: Client) {
-    const interactionPath = path.join(__dirname, '..', '..', 'app', 'interactions');
+export default async function handleTestComponents(client: Client) {
+    const interactionPath = path.join(__dirname, '..', '..', 'app', 'test');
     if (fs.existsSync(interactionPath)) {
         const interactionFolders = fs.readdirSync(interactionPath);
         
@@ -71,15 +71,15 @@ export default async function handleComponents(client: Client) {
             if (fs.existsSync(componentsPath)) {
                 const buttonsPath = path.join(componentsPath, 'buttons');
                 if (fs.existsSync(buttonsPath)) {
-                    loadComponentsFromDirectory(client, buttonsPath, 'buttons');
+                    loadComponentsFromTestDirectory(client, buttonsPath, 'buttons');
                 }
                 const selectMenusPath = path.join(componentsPath, 'selectMenus');
                 if (fs.existsSync(selectMenusPath)) {
-                    loadComponentsFromDirectory(client, selectMenusPath, 'selectMenus');
+                    loadComponentsFromTestDirectory(client, selectMenusPath, 'selectMenus');
                 }
                 const modalsPath = path.join(componentsPath, 'modals');
                 if (fs.existsSync(modalsPath)) {
-                    loadComponentsFromDirectory(client, modalsPath, 'modals');
+                    loadComponentsFromTestDirectory(client, modalsPath, 'modals');
                 }
             }
         }

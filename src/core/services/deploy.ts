@@ -4,11 +4,11 @@ import path from 'path';
 import config from '../../../config.json';
 
 const commands: any[] = [];
-const interactionsPath = path.join(__dirname, '../interactions');
+const interactionsPath = path.join(__dirname,'../../app/interactions');
 const interactionFolders = fs.readdirSync(interactionsPath);
 
 for (const folder of interactionFolders) {
-    const commandsPath = path.join(interactionsPath, folder, 'commands');
+    const commandsPath = path.join(interactionsPath, folder);
     if (!fs.existsSync(commandsPath)) continue;
     const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.ts'));
     for (const file of commandFiles) {

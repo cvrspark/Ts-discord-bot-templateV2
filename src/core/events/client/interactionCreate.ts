@@ -1,7 +1,6 @@
 import { Interaction, Events } from 'discord.js';
 const cooldowns = new Map<string, Map<string, number>>();
 import { logs } from "../../../../config.json"
-
 function handleCooldown(key: string, userId: string, cooldownTime: number): { blocked: boolean, timeString?: string } {
     if (cooldownTime === 0) return { blocked: false };
 

@@ -1,11 +1,14 @@
 {
-  "name": "ts-antinuke",
+  "name": "ts-eco-reborn",
   "version": "1.0.0",
-  "main": "src/index.ts",
+  "main": "src/Bot.ts",
   "scripts": {
-    "start": "bun src/index.ts",
+    "start": "bun src/Bot.ts",
     "deploy": "bun src/core/services/deploy.ts",
-    "comp": "bun src/core/services/deploy.ts && bun src/index.ts"
+    "comp": "bun src/core/services/deploy.ts && bun src/Bot.ts",
+    "deploytest": "bun src/core/services/deploytest.ts",
+    "undeploytest": "bun src/core/services/deploy.ts"
+
   },
   "dependencies": {
     "discord-api-types": "^0.38.18",
