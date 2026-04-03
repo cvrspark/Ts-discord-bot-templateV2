@@ -31,9 +31,11 @@ npm install -g bun # Install Bun globally to run the bot directly from TypeScrip
 Here are the available scripts:
 
 ```bash
-bun start       # Starts the bot
-bun run deploy  # Deploys the commands
-bun run comp    # Deploys and starts the bot
+bun start             # Starts the bot
+bun run deploy        # Deploys the commands
+bun run deploytest    # Deploys the test commands 
+bun run undeploytest  # Undeploys the test commands 
+bun run comp          # Deploys and starts the bot
 ```
 
 ## Tips
