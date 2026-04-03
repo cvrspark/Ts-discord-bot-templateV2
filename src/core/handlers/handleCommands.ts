@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import clientsettings from "../../../config.json"
 
-const log = clientsettings.private;
+const log = clientsettings.logs;
 function loadCommandsFromDirectory(client: any, dirPath: string) {
     const items = fs.readdirSync(dirPath);
 

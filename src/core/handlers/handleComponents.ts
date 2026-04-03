@@ -4,7 +4,7 @@ import path from 'path';
 
 import clientsettings from "../../../config.json"
 
-const log = clientsettings.private;
+const log = clientsettings.logs;
 
 function loadComponentsFromDirectory(client: Client, dirPath: string, componentType: 'buttons' | 'selectMenus' | 'modals') {
     if (!fs.existsSync(dirPath)) {

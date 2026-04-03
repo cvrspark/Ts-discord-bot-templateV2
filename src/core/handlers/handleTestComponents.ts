@@ -4,7 +4,7 @@ import { Client } from 'discord.js';
 import "../../core/types/client"
 import clientsettings from "../../../config.json"
 
-const log = clientsettings.private;
+const log = clientsettings.logs;
 
 function loadComponentsFromTestDirectory(client: Client, dirPath: string, componentType: 'buttons' | 'selectMenus' | 'modals') {
     if (!fs.existsSync(dirPath)) {
